@@ -61,7 +61,7 @@ import { createPaginator } from 'prisma-pagination'
 const pagination = (req, res, next) => {
   const page = Number(req.query.page) || 1
 
-  req.paginate = createPaginator({ page })
+  req.paginate = createPaginator({ page, perPage: 20 })
 
   next()
 }

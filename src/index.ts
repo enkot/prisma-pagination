@@ -10,12 +10,12 @@ export interface PaginatedResult<T> {
   }
 }
 
-export type PaginateFunction = <T, K extends { where: unknown }>(model: any, args: K) => Promise<PaginatedResult<T>>
+export type PaginateFunction = <T, K>(model: any, args?: K) => Promise<PaginatedResult<T>>
 
 export const createPaginator = ({ page = 1, perPage = 10 }: { page?: number, perPage?: number }): PaginateFunction => {
   const skip = page > 0 ? perPage * (page - 1) : 0
 
-  return async (model, args) => {
+  return async (model, args: any = { where: undefined }) => {
     const [total, data] = await Promise.all([
       model.count({ where: args.where }),
       model.findMany({
