@@ -23,7 +23,6 @@ app.get('/', async ({ prisma }, res) => {
   
   // You can pass generic types: <Model> and <Model>FindManyArgs
   // to have args and result typed
-  
   const result = await paginate<User, Prisma.UserFindManyArgs>(
     prisma.user,
     {
@@ -59,11 +58,15 @@ If you use Express-like framework, initializing `createPaginator` could be moved
 ```typescript
 import { createPaginator } from 'prisma-pagination'
 
-export const pagination = (req, res, next) => {
+const pagination = (req, res, next) => {
   const page = Number(req.query.page) || 1
 
   req.paginate = createPaginator({ page })
+
+  next()
 }
+
+app.use(pagination)
 ```
 
 so then it can be used in any route handler:
