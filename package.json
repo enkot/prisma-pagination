@@ -1,0 +1,25 @@
+{
+  "name": "prisma-pagination",
+  "version": "0.1.0",
+  "description": "",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npm run clean && microbundle --format esm,cjs",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "watch": "microbundle watch --format esm,cjs"
+  },
+  "keywords": [
+    "prisma",
+    "pagination",
+    "node"
+  ],
+  "author": "Enkot",
+  "license": "ISC",
+  "devDependencies": {
+    "microbundle": "^0.14.2"
+  }
+}
