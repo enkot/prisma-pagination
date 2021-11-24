@@ -1,6 +1,6 @@
 {
   "name": "prisma-pagination",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -18,7 +18,7 @@
     "node"
   ],
   "author": "Enkot",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "microbundle": "^0.14.2"
   }
