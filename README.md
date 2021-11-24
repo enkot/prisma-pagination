@@ -2,7 +2,7 @@
 Helper library for [Prisma](https://www.prisma.io/docs/concepts/components/prisma-client/pagination) offset pagination with Typescript support.
 
 [![Version](http://img.shields.io/npm/v/prisma-pagination.svg)](https://npmjs.org/package/prisma-pagination)
-[![License](https://img.shields.io/npm/l/prisma-pagination.svg)](https://npmjs.org/package/prisma-offset-pagination)
+[![License](https://img.shields.io/npm/l/prisma-pagination.svg)](https://npmjs.org/package/prisma-pagination)
 
 ## Installation
 
