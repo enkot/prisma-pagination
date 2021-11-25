@@ -17,7 +17,14 @@
     "pagination",
     "node"
   ],
-  "author": "Enkot",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enkot/prisma-pagination.git"
+  },
+  "bugs": {
+    "url": "https://github.com/enkot/prisma-pagination/issues"
+  },
+  "author": "Enkot <taras.batenkov@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "microbundle": "^0.14.2"
