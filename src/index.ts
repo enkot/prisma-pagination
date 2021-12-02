@@ -16,12 +16,12 @@ export type PaginateFunction = <T, K>(model: any, args?: K, options?: PaginateOp
 export const createPaginator = (options: PaginateOptions): PaginateFunction => {
   let page: number = Number(options.page) || 1
   let perPage: number = Number(options.perPage) || 10
-  const skip = page > 0 ? perPage * (page - 1) : 0
 
   return async (model, args: any = { where: undefined }, options) => {
     page = Number(options?.page) || page
     perPage = Number(options?.perPage) || perPage
-
+    
+    const skip = page > 0 ? perPage * (page - 1) : 0
     const [total, data] = await Promise.all([
       model.count({ where: args.where }),
       model.findMany({
