@@ -18,11 +18,12 @@ import { User, Prisma } from '@prisma/client'
 
 // ...
 
-app.get('/', async ({ prisma }, res) => {
-  const paginate = createPaginator({ page: 2 })
+const paginate = createPaginator({ perPage: 20 })
+
+app.get('/', async ({ query, prisma }, res) => {
   
-  // You can pass generic types: <Model> and <Model>FindManyArgs
-  // to have args and result typed
+  // Generic types can be passed to "paginate",
+  // so args and result will be typed and autocompleted :)
   const result = await paginate<User, Prisma.UserFindManyArgs>(
     prisma.user,
     {
@@ -34,7 +35,8 @@ app.get('/', async ({ prisma }, res) => {
       orderBy: {
         id: 'desc',
       }
-    }
+    }, 
+    { page: query.page }
   })
 
   /* Result structure:
@@ -53,15 +55,13 @@ app.get('/', async ({ prisma }, res) => {
 })
 ```
 
-If you use Express-like framework, initializing `createPaginator` could be moved to the middleware:
+For Express-like frameworks, `page` and `perPage` can be initialized in the middleware:
 
 ```typescript
 import { createPaginator } from 'prisma-pagination'
 
 const pagination = (req, res, next) => {
-  const page = Number(req.query.page) || 1
-
-  req.paginate = createPaginator({ page, perPage: 20 })
+  req.paginate = createPaginator({ page: req.query.page, perPage: 20 })
 
   next()
 }
@@ -69,7 +69,7 @@ const pagination = (req, res, next) => {
 app.use(pagination)
 ```
 
-so then it can be used in any route handler:
+so there is no need to pass `page` value in each handler:
 
 ```typescript
 app.get('/', async ({ paginate, prisma }, res) => {
@@ -77,7 +77,7 @@ app.get('/', async ({ paginate, prisma }, res) => {
 })
 ```
 
-To have proper Typescript support you can extend Request interface like so:
+To have proper Typescript support, Request interface can be extended this way:
 
 ```typescript
 import { PaginateFunction } from 'prisma-pagination'
