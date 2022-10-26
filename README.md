@@ -31,7 +31,7 @@ app.get('/', async ({ query, prisma }, res) => {
         name: {
           contains: 'Alice'
         }
-      }
+      },
       orderBy: {
         id: 'desc',
       }
